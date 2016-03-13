@@ -9,6 +9,8 @@ HOW TO PLAY THE GAME:
 
 Starting:
 
+Press the link: http://laimonasdanyla.github.io/FEND-project-Arcade-game.
+Or:
 Download all directory and open index.html.
 
 Moving player:

@@ -1,0 +1,10 @@
+body {
+    text-align: center;
+    background-color: black;
+    color: white;
+}
+
+.legend {
+  font-family: fantasy;
+  padding: 5px;
+}

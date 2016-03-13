@@ -9,11 +9,9 @@
  Player is losing 10 point if collided with bug.
  The player resets back everytime the player collides with an enemy or when it reaches the water.
 */
-
 //
 //Citation: help and some ideas for the code from https://github.com/rohitcricket.
 //
-
 // game variables
 var score = 0;
 var lives = 5;
@@ -40,9 +38,9 @@ Enemy.prototype.update = function(dt) {
     // which will ensure the game runs at the same speed for
     // all computers.
     if (this.x < 505) {
-      this.x = this.x + (this.speed * dt);
+        this.x = this.x + (this.speed * dt);
     } else {
-      this.x = -100; // bugs appearinf from off canvas
+        this.x = -100; // bugs appearinf from off canvas
     }
 };
 
@@ -56,98 +54,99 @@ Enemy.prototype.render = function() {
 // a handleInput() method.
 
 var Player = function() {
-  this.sprite = 'images/char-boy.png';
-  this.x = 20 + 120 * (Math.floor(Math.random() * 4));
-  this.y = 350;
-  this.speed = 10;
-}
+    this.sprite = 'images/char-boy.png';
+    this.x = 20 + 120 * (Math.floor(Math.random() * 4));
+    this.y = 350;
+    this.speed = 10;
+};
 
 // updating players position:
 Player.prototype.update = function(dt) {
-  //updating movement by dt parameter - in order to have same runnig speed
-  //for all computers:
-  this.x * (dt);
-  this.y * (dt);
+    //updating movement by dt parameter - in order to have same runnig speed
+    //for all computers:
+    this.x * (dt);
+    this.y * (dt);
 
-  //Resetting player if water is reached
+    //Resetting player if water is reached
 
-  if (this.y <= 0) {
-    player.reset();
-    level = level + 1;
-    score = score + 10;
-    document.getElementById('level').innerHTML = "Level: " + level;
-    document.getElementById('score').innerHTML = "Score: " + score;
-  }
-}
-  //drawing payler on the screen:
-  Player.prototype.render = function() {
+    if (this.y <= 0) {
+        player.reset();
+        level = level + 1;
+        score = score + 10;
+        document.getElementById('level').innerHTML = "Level: " + level;
+        document.getElementById('score').innerHTML = "Score: " + score;
+    }
+};
+//drawing payler on the screen:
+Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
+};
 
-  //reseting player to initial position when life is lost or goal reached.
-  Player.prototype.reset = function() {
+//reseting player to initial position when life is lost or goal reached.
+Player.prototype.reset = function() {
     this.x = 100;
     this.y = 400;
-  }
+};
 
-  //Moving player to water after colision with princess
-  Player.prototype.water = function() {
+//Moving player to water after colision with princess
+Player.prototype.water = function() {
     this.x = 100;
     this.y = 0;
-  }
+};
 
-  //Player is loosing life
-  Player.prototype.lives = function() {
-    lives = lives -1;
-    document.getElementById('lives').innerHTML = "Remaining lives: " + lives;
-  }
+//Player is loosing life
+Player.prototype.lives = function() {
+    lives = lives - 1;
+    document.getElementById('lives').innerHTML = "Remaining lives: " +
+        lives;
+}
 
-  //Draw the princess
-  var Princess = function() {
+//Draw the princess
+var Princess = function() {
     this.sprite = 'images/char-princess-girl.png';
     //sprite helper used for easy load of images of players
     this.x = 20 + 120 * (Math.floor(Math.random() * 4));
     this.y = 100 + 50 * (Math.floor(Math.random() * 4));
-  }
+};
 
-  //updating princess position
-  Princess.prototype.update = function(dt) {
+//updating princess position
+Princess.prototype.update = function(dt) {
     this.x * (dt);
     this.y * (dt);
-  }
+};
 
-  // reseting princess if colided wiht enemy
-  Princess.prototype.reset = function() {
+// reseting princess if colided wiht enemy
+Princess.prototype.reset = function() {
     this.x = 20 + 120 * (Math.floor(Math.random() * 4));
     this.y = 100 + 50 * (Math.floor(Math.random() * 4));
-  }
+};
 
-  // draw princess on the screen:
-  Princess.prototype.render = function() {
+// draw princess on the screen:
+Princess.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
+};
 
 // draw Gems:
-  var Gems = function() {
+var Gems = function() {
     this.sprite = 'images/Gem Orange.png';
     this.x = 50 + 120 * (Math.floor(Math.random() * 4));
     this.y = 100 + 50 * (Math.floor(Math.random() * 4));
-  }
+};
 
-  Gems.prototype.update = function(dt) {
+Gems.prototype.update = function(dt) {
     //updating by dt parameter to run the game on same speed on all computers
     this.x * (dt);
     this.y * (dt);
-  }
-  Gems.prototype.reset = function() {
+};
+Gems.prototype.reset = function() {
     this.x = 50 + 120 * (Math.floor(Math.random() * 4));
     this.y = 100 + 50 * (Math.floor(Math.random() * 4));
-  }
+};
 
-  //gems on screen
-  Gems.prototype.render = function() {
+//gems on screen
+Gems.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-  }
+};
 
 
 // Now instantiate your objects.
@@ -161,7 +160,7 @@ var Darth = new Enemy(-100, 60, 250);
 var Vader = new Enemy(-100, 180, 400);
 var Joker = new Enemy(-100, 240, 150);
 var Specter = new Enemy(-100, 120, 300);
-allEnemies = [Darth, Vader, Joker, Specter];
+var allEnemies = [Darth, Vader, Joker, Specter];
 
 
 // This listens for key presses and sends the keys to your
@@ -180,13 +179,13 @@ document.addEventListener('keyup', function(e) {
 // function to move the player:
 
 Player.prototype.handleInput = function(key) {
-  if (key === 'left' && this.x > 0) {
-    this.x -= 101;
-  } else if (key === 'right' && this.x < 395) {
-    this.x += 101;
-  } else if (key === 'up' && this.y > 0) {
-    this.y -= 83;
-  } else if (key === 'down' && this.y < 400) {
-    this.y += 83;
-  }
-}
+    if (key === 'left' && this.x > 0) {
+        this.x -= 101;
+    } else if (key === 'right' && this.x < 395) {
+        this.x += 101;
+    } else if (key === 'up' && this.y > 0) {
+        this.y -= 83;
+    } else if (key === 'down' && this.y < 400) {
+        this.y += 83;
+    }
+};

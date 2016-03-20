@@ -70,7 +70,7 @@ Player.prototype.update = function(dt) {
     //Resetting player if water is reached
 
     if (this.y <= 0) {
-        player.reset();
+        this.reset();
         level = level + 1;
         score = score + 10;
         document.getElementById('level').innerHTML = "Level: " + level;
